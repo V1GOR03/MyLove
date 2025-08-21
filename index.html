@@ -3,6 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>For You ❤️</title>
+
+  <!-- زر تشغيل الأغنية -->
+<button onclick="playSong()">🎵 شغلي الأغنية 🎵</button>
+
+<audio id="mySong" loop>
+  <source src="your-song.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  function playSong() {
+    document.getElementById("mySong").play();
+  }
+</script>
+  
   <style>
     body {
       margin: 0;
@@ -115,16 +130,6 @@
     <div class="response" id="response"></div>
   </div>
 
-  <script>
-    function showResponse(text) {
-      document.getElementById("response").innerText = text;
-    }
-    <button onclick="playSong()">🎵 شغلي الأغنية 🎵</button>
-
-<audio id="mySong" loop>
-  <source src="your-song.mp3" type="audio/mpeg">
-</audio>
-
 <script>
   function playSong() {
     document.getElementById("mySong").play();
@@ -135,6 +140,7 @@
 
 </body>
 </html>
+
 
 
 
