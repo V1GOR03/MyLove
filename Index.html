@@ -1,17 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: #fff0f6; /* اوف وايت مع لمسة زهري */
+      color: #4a004e;
+      text-align: center;
+    }
+
+    header {
+      padding: 50px 20px;
+      background: linear-gradient(135deg, #ffb6d9, #d8b4f8);
+      color: white;
+    }
+
+    header h1 {
+      font-size: 50px;
+      margin: 0;
+    }
+
+    section {
+      padding: 40px 20px;
+    }
+
+    .image-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .image-text img {
+      width: 200px;
+      height: auto;
+      border-radius: 20px;
+      margin: 0 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .image-text p {
+      font-size: 20px;
+      max-width: 300px;
+    }
+
+    .buttons {
+      margin: 50px 0;
+    }
+
+    .buttons button {
+      background: #d8b4f8;
+      border: none;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .buttons button:hover {
+      background: #ffb6d9;
+      color: white;
+    }
+
+    .response {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #ff3385;
+    }
+  </style>
 </head>
-
 <body>
-    <h1> Hello world </h1>
-    <script>
-        console.log("Hello, World!");
-    </script>
-</body>
 
+  <!-- الاغنية -->
+  <audio autoplay loop>
+    <source src="your-song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- العنوان -->
+  <header>
+    <h1>For My Love 💖</h1>
+    <p>Just a little gift made with love</p>
+  </header>
+
+  <!-- الصور والنصوص -->
+  <section>
+    <div class="image-text">
+      <img src="images/photo1.jpg" alt="Photo 1">
+      <p>هاي أول صورة بتحبك كثير 💕</p>
+    </div>
+
+    <div class="image-text">
+      <p>كل لحظة معك أجمل من يلي قبلها 🌸</p>
+      <img src="images/photo2.jpg" alt="Photo 2">
+    </div>
+
+    <div class="image-text">
+      <img src="images/photo3.jpg" alt="Photo 3">
+      <p>إنتي وردة عم تزين حياتي 🌹</p>
+    </div>
+  </section>
+
+  <!-- الأزرار -->
+  <div class="buttons">
+    <button onclick="showResponse('❤️ طبعاً بحبك! ❤️')">هل بتحبيني؟</button>
+    <button onclick="showResponse('🌸 رح نظل مع بعض للأبد 🌸')">وعد للأبد؟</button>
+    <div class="response" id="response"></div>
+  </div>
+
+  <script>
+    function showResponse(text) {
+      document.getElementById("response").innerText = text;
+    }
+  </script>
+
+</body>
 </html>
