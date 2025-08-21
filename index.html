@@ -1,151 +1,209 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقعي</title>
-    <style>
-        body {
-            background-color: #121212;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>موقعي</title>
+<style>
+    body {
+        background-color: #121212;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        margin:0; padding:0;
+        overflow-x:hidden;
+        position: relative;
+    }
 
-        /* قلوب متحركة */
-        .heart {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            clip-path: polygon(50% 0%, 61% 8%, 68% 23%, 68% 38%, 50% 60%, 32% 38%, 32% 23%, 39% 8%);
-            animation: float 10s infinite;
-            opacity: 0.7;
-        }
+    /* القلوب المتحركة */
+    .heart {
+        position: absolute;
+        width: 20px; height: 20px;
+        background-color: red;
+        clip-path: polygon(50% 0%, 61% 8%, 68% 23%, 68% 38%, 50% 60%, 32% 38%, 32% 23%, 39% 8%);
+        animation: float 10s infinite;
+        opacity: 0.7;
+    }
+    @keyframes float {
+        0% { transform: translateY(100vh) scale(1); }
+        50% { transform: translateY(50vh) scale(1.2); }
+        100% { transform: translateY(-10vh) scale(1); }
+    }
 
-        @keyframes float {
-            0% { transform: translateY(100vh) scale(1); }
-            50% { transform: translateY(50vh) scale(1.2); }
-            100% { transform: translateY(-10vh) scale(1); }
-        }
+    /* نصوص الصور والتناوب */
+    .section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 50px 20px;
+        flex-wrap: wrap;
+    }
+    .section:nth-child(even) { flex-direction: row-reverse; }
+    .section img {
+        width: 250px; height: 250px;
+        object-fit: cover;
+        border-radius: 20px;
+        border: 5px solid #ff4b5c;
+        margin: 10px;
+        transition: transform 0.3s;
+    }
+    .section img:hover { transform: scale(1.1); }
+    .section .text {
+        max-width: 400px;
+        margin: 10px;
+        background: rgba(255,75,92,0.1);
+        padding: 15px;
+        border-radius: 15px;
+    }
 
-        /* معرض الصور */
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 50px 20px;
-            justify-content: center;
-        }
+    /* نص صغير منفصل */
+    .small-text {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 15px;
+        border: 2px solid #ff4b5c;
+        border-radius: 15px;
+        text-align: center;
+        font-size: 16px;
+    }
 
-        .gallery img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 15px;
-            transition: transform 0.3s;
-        }
+    /* زر الأغنية على شكل قلب */
+    .music-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: #ff4b5c;
+        clip-path: polygon(50% 0%, 61% 8%, 68% 23%, 68% 38%, 50% 60%, 32% 38%, 32% 23%, 39% 8%);
+        cursor: pointer;
+        display:flex; justify-content:center; align-items:center;
+        transition: background-color 0.5s, transform 0.3s;
+    }
+    .music-btn.playing { background-color: #ff1f3d; transform: scale(1.2); }
 
-        .gallery img:hover { transform: scale(1.1); }
-
-        /* قسم النصوص */
-        .content {
-            text-align: center;
-            padding: 30px 20px;
-        }
-
-        .content h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        .content p {
-            font-size: 18px;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 10px auto;
-        }
-
-        /* قسم الأغنية */
-        .music {
-            text-align: center;
-            padding: 30px 20px;
-        }
-
-        .music button {
-            background-color: #ff4b5c;
-            color: #fff;
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .music button:hover { background-color: #ff1f3d; }
-    </style>
+    /* أزرار تفاعلية */
+    .buttons {
+        display: flex;
+        justify-content: center;
+        margin: 30px 0;
+        gap: 20px;
+    }
+    .buttons button {
+        padding: 12px 25px;
+        font-size: 16px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        background-color: #ff4b5c;
+        color: #fff;
+        transition: background-color 0.3s;
+    }
+    .buttons button:hover { background-color: #ff1f3d; }
+    .response {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 20px;
+        display: none;
+    }
+</style>
 </head>
 <body>
 
-    <!-- قلوب -->
-    <div id="hearts"></div>
+<div id="hearts"></div>
 
-    <!-- النصوص -->
-    <div class="content">
-        <h1>عنوانك هنا</h1>
-        <p>النص أو الفقرة الأولى توضع هنا. يمكنك تعديلها كما تريد.</p>
-        <p>النص أو الفقرة الثانية توضع هنا.</p>
-    </div>
+<!-- أقسام الصور والنصوص -->
+<div class="section">
+    <img src="images/photo1.jpg" alt="صورة 1">
+    <div class="text">نص 1 بجانب الصورة</div>
+</div>
+<div class="section">
+    <img src="images/photo2.jpg" alt="صورة 2">
+    <div class="text">نص 2 بجانب الصورة</div>
+</div>
+<div class="section">
+    <img src="images/photo3.jpg" alt="صورة 3">
+    <div class="text">نص 3 بجانب الصورة</div>
+</div>
+<div class="section">
+    <img src="images/photo4.jpg" alt="صورة 4">
+    <div class="text">نص 4 بجانب الصورة</div>
+</div>
+<div class="section">
+    <img src="images/photo5.jpg" alt="صورة 5">
+    <div class="text">نص 5 بجانب الصورة</div>
+</div>
+<div class="section">
+    <img src="images/photo6.jpg" alt="صورة 6">
+    <div class="text">نص 6 بجانب الصورة</div>
+</div>
+<div class="section">
+    <img src="images/photo7.jpg" alt="صورة 7">
+    <div class="text">نص 7 بجانب الصورة</div>
+</div>
+<div class="section">
+    <img src="images/photo8.jpg" alt="صورة 8">
+    <div class="text">نص 8 بجانب الصورة</div>
+</div>
+<div class="section">
+    <img src="images/photo9.jpg" alt="صورة 9">
+    <div class="text">نص 9 بجانب الصورة</div>
+</div>
 
-    <!-- معرض الصور -->
-    <div class="gallery" id="gallery">
-        <!-- أضف صورك المحلية هنا -->
-        <img src="images/photo1.jpg" alt="صورة 1">
-        <img src="images/photo2.jpg" alt="صورة 2">
-        <img src="images/photo3.jpg" alt="صورة 3">
-        <img src="images/photo4.jpg" alt="صورة 4">
-        <img src="images/photo5.jpg" alt="صورة 5">
-        <img src="images/photo6.jpg" alt="صورة 6">
-        <img src="images/photo7.jpg" alt="صورة 7">
-        <img src="images/photo8.jpg" alt="صورة 8">
-        <img src="images/photo9.jpg" alt="صورة 9">
-    </div>
+<!-- نص صغير منفصل -->
+<div class="small-text">هذا النص الصغير مع فريم أسفل الصور</div>
 
-    <!-- تشغيل الأغنية -->
-    <div class="music">
-        <audio id="song" src="Somewhere Only We Know.mp3"></audio>
-        <button id="playBtn">تشغيل الأغنية</button>
-    </div>
+<!-- أزرار تفاعلية -->
+<div class="buttons">
+    <button id="btn1">اختيار 1</button>
+    <button id="btn2">اختيار 2</button>
+</div>
+<div class="response" id="response"></div>
 
-    <script>
-        // إنشاء قلوب عشوائية
-        const heartsContainer = document.getElementById('hearts');
-        for(let i=0; i<30; i++){
-            let heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = 5 + Math.random() * 5 + 's';
-            heart.style.width = 15 + Math.random() * 25 + 'px';
-            heart.style.height = heart.style.width;
-            heartsContainer.appendChild(heart);
+<!-- زر الأغنية -->
+<div class="music-btn" id="musicBtn"></div>
+<audio id="song" src="Somewhere Only We Know.mp3"></audio>
+
+<script>
+    // القلوب المتحركة
+    const heartsContainer = document.getElementById('hearts');
+    for(let i=0;i<30;i++){
+        let heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random()*100+'vw';
+        heart.style.animationDuration = 5 + Math.random()*5 + 's';
+        heart.style.width = 15 + Math.random()*25+'px';
+        heart.style.height = heart.style.width;
+        heartsContainer.appendChild(heart);
+    }
+
+    // زر الأغنية
+    const musicBtn = document.getElementById('musicBtn');
+    const song = document.getElementById('song');
+    musicBtn.addEventListener('click', ()=>{
+        if(song.paused){
+            song.play();
+            musicBtn.classList.add('playing');
+        } else {
+            song.pause();
+            musicBtn.classList.remove('playing');
         }
+    });
 
-        // زر الأغنية
-        const song = document.getElementById('song');
-        const playBtn = document.getElementById('playBtn');
-        playBtn.addEventListener('click', () => {
-            if(song.paused){
-                song.play();
-                playBtn.textContent = "إيقاف الأغنية";
-            } else {
-                song.pause();
-                playBtn.textContent = "تشغيل الأغنية";
-            }
-        });
-    </script>
+    // الأزرار التفاعلية
+    const btn1 = document.getElementById('btn1');
+    const btn2 = document.getElementById('btn2');
+    const response = document.getElementById('response');
+
+    btn1.addEventListener('click', ()=>{
+        response.textContent = "لقد اخترت الاختيار 1";
+        response.style.display = "block";
+        btn2.style.display = "none";
+    });
+    btn2.addEventListener('click', ()=>{
+        response.textContent = "لقد اخترت الاختيار 2";
+        response.style.display = "block";
+        btn1.style.display = "none";
+    });
+</script>
 </body>
 </html>
