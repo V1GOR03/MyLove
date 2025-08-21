@@ -2,161 +2,200 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For My Love ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Love 💖</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-      background: white url('https://i.imgur.com/OlV3U9R.png') repeat; /* خلفية ورود */
-      color: #4a004e;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #444;
+      text-align: center;
+      background-image: url('https://i.imgur.com/4NJlK2y.png'); /* خلفية ورد */
+      background-size: cover;
+      background-attachment: fixed;
     }
 
     header {
-      padding: 50px 20px;
-      background: linear-gradient(135deg, #ffb6d9, #ffffff);
-      color: #4a004e;
-      text-align: center;
+      padding: 30px;
+      background: rgba(255, 192, 203, 0.8);
+      border-bottom: 3px solid #ff69b4;
     }
 
     header h1 {
-      font-size: 50px;
-      margin: 0;
+      font-size: 2.5rem;
+      color: #ff1493;
     }
 
-    section {
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
+    header p {
+      color: #660066;
+      font-size: 1.2rem;
     }
 
-    .image-text {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
+      padding: 30px;
     }
 
-    .image-text:nth-child(even) {
-      flex-direction: row-reverse;
-    }
-
-    .image-text img {
-      width: 200px;
-      height: auto;
+    .photo-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid #ffb6c1;
       border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      border: 5px solid #ffb6d9;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
     }
 
-    .text-box {
-      background: rgba(255, 182, 217, 0.2);
-      padding: 15px 20px;
+    .photo-card:hover {
+      transform: scale(1.05);
+    }
+
+    .photo-card img {
+      max-width: 100%;
       border-radius: 15px;
-      max-width: 300px;
-      font-size: 18px;
-      line-height: 1.5;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    /* زر الأغنية (قلب) */
-    #musicBtn {
+    .photo-card p {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #d63384;
+    }
+
+    /* زر القلب (لتشغيل الأغنية) */
+    #music-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      font-size: 30px;
-      background: none;
+      background: #ff69b4;
+      color: white;
       border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
       cursor: pointer;
-      transition: 0.3s;
-      color: #bbb;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background 0.3s;
     }
 
-    #musicBtn.active {
-      color: #ff3385;
-      transform: scale(1.2);
+    #music-btn.active {
+      background: #d63384;
+    }
+
+    /* أزرار القلوب للنهاية */
+    .love-buttons {
+      margin: 30px;
+    }
+
+    .love-btn {
+      background: #ffb6c1;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      margin: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      color: white;
+      transition: background 0.3s;
+    }
+
+    .love-btn:hover {
+      background: #ff69b4;
+    }
+
+    .response {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #660066;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-
-  <!-- العنوان -->
   <header>
     <h1>For My Love 💖</h1>
-    <p>A little gift made with love 🌸</p>
+    <p>Just a little gift made with love</p>
   </header>
 
-  <!-- الصور والنصوص -->
-  <section>
-    <div class="image-text">
-      <img src="images/ph1.jpg" alt="Ph1.jpg">
-      <div class="text-box">النص الأول هون 💕</div>
+  <!-- الصور (9 صور) -->
+  <section class="images">
+    <div class="photo-card">
+      <img src="https://via.placeholder.com/250x200" alt="Ph1.jpg">
+      <p>كلمة جنب الصورة</p>
     </div>
-
-    <div class="image-text">
-      <img src="images/photo2.jpg" alt="Photo 2">
-      <div class="text-box">النص الثاني هون 🌸</div>
+    <div class="photo-card">
+      <img src="https://via.placeholder.com/250x200" alt="Ph1.jpg">
+      <p>كلمة جنب الصورة</p>
     </div>
-
-    <div class="image-text">
-      <img src="images/photo3.jpg" alt="Photo 3">
-      <div class="text-box">النص الثالث هون 💖</div>
+    <div class="photo-card">
+      <img src="https://via.placeholder.com/250x200" alt="Ph1.jpg">
+      <p>كلمة جنب الصورة</p>
     </div>
-
-    <div class="image-text">
-      <img src="images/photo4.jpg" alt="Photo 4">
-      <div class="text-box">النص الرابع هون 🌹</div>
+    <div class="photo-card">
+      <img src="https://via.placeholder.com/250x200" alt="Ph1.jpg">
+      <p>كلمة جنب الصورة</p>
     </div>
-
-    <div class="image-text">
-      <img src="images/photo5.jpg" alt="Photo 5">
-      <div class="text-box">النص الخامس هون 🌷</div>
+    <div class="photo-card">
+      <img src="https://via.placeholder.com/250x200" alt="Ph1.jpg">
+      <p>كلمة جنب الصورة</p>
     </div>
-
-    <div class="image-text">
-      <img src="images/photo6.jpg" alt="Photo 6">
-      <div class="text-box">النص السادس هون 💞</div>
+    <div class="photo-card">
+      <img src="https://via.placeholder.com/250x200" alt="Ph1.jpg">
+      <p>كلمة جنب الصورة</p>
     </div>
-
-    <div class="image-text">
-      <img src="images/photo7.jpg" alt="Photo 7">
-      <div class="text-box">النص السابع هون 🌼</div>
+    <div class="photo-card">
+      <img src="https://via.placeholder.com/250x200" alt="Ph1.jpg">
+      <p>كلمة جنب الصورة</p>
     </div>
-
-    <div class="image-text">
-      <img src="images/photo8.jpg" alt="Photo 8">
-      <div class="text-box">النص الثامن هون 💐</div>
+    <div class="photo-card">
+      <img src="https://via.placeholder.com/250x200" alt="Ph1.jpg">
+      <p>كلمة جنب الصورة</p>
     </div>
-
-    <div class="image-text">
-      <img src="images/photo9.jpg" alt="Photo 9">
-      <div class="text-box">النص التاسع هون 💌</div>
+    <div class="photo-card">
+      <img src="https://via.placeholder.com/250x200" alt="Ph1.jpg">
+      <p>كلمة جنب الصورة</p>
     </div>
   </section>
 
-  <!-- زر الأغنية -->
-  <button id="musicBtn">❤</button>
+  <!-- أزرار القلوب -->
+  <section class="love-buttons">
+    <button class="love-btn" onclick="showResponse('r1')">❤️ Button 1</button>
+    <div id="r1" class="response"></div>
 
-  <!-- الصوت -->
+    <button class="love-btn" onclick="showResponse('r2')">💜 Button 2</button>
+    <div id="r2" class="response"></div>
+  </section>
+
+  <!-- زر تشغيل الأغنية -->
+  <button id="music-btn" onclick="toggleSong()">💖</button>
   <audio id="mySong" loop>
-    <source src="your-song.mp3" type="audio/mpeg">
+    <source src="Somewhere Only We Know.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
 
   <script>
-    const musicBtn = document.getElementById("musicBtn");
-    const mySong = document.getElementById("mySong");
-
-    musicBtn.addEventListener("click", () => {
-      if (mySong.paused) {
-        mySong.play();
-        musicBtn.classList.add("active");
+    function toggleSong() {
+      let song = document.getElementById("mySong");
+      let btn = document.getElementById("music-btn");
+      if (song.paused) {
+        song.play();
+        btn.classList.add("active");
       } else {
-        mySong.pause();
-        musicBtn.classList.remove("active");
+        song.pause();
+        btn.classList.remove("active");
       }
-    });
-  </script>
+    }
 
+    function showResponse(id) {
+      let div = document.getElementById(id);
+      if (id === "r1") {
+        div.innerHTML = "🌹 هذا الرد للأول";
+      } else if (id === "r2") {
+        div.innerHTML = "💌 هذا الرد للثاني";
+      }
+    }
+  </script>
 </body>
 </html>
