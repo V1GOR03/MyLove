@@ -119,10 +119,23 @@
     function showResponse(text) {
       document.getElementById("response").innerText = text;
     }
+    <button onclick="playSong()">🎵 شغلي الأغنية 🎵</button>
+
+<audio id="mySong" loop>
+  <source src="your-song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  function playSong() {
+    document.getElementById("mySong").play();
+  }
+</script>
+
   </script>
 
 </body>
 </html>
+
 
 
 
