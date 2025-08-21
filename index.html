@@ -2,36 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For You ❤️</title>
-
-  <!-- زر تشغيل الأغنية -->
-<button onclick="playSong()">🎵 شغلي الأغنية 🎵</button>
-
-<audio id="mySong" loop>
-  <source src="I Wanna Be Yours.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-<script>
-  function playSong() {
-    document.getElementById("mySong").play();
-  }
-</script>
-  
+  <title>For My Love ❤️</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Arial', sans-serif;
-      background: #fff0f6; /* اوف وايت مع لمسة زهري */
+      background: white url('https://i.imgur.com/OlV3U9R.png') repeat; /* خلفية ورود */
       color: #4a004e;
-      text-align: center;
     }
 
     header {
       padding: 50px 20px;
-      background: linear-gradient(135deg, #ffb6d9, #d8b4f8);
-      color: white;
+      background: linear-gradient(135deg, #ffb6d9, #ffffff);
+      color: #4a004e;
+      text-align: center;
     }
 
     header h1 {
@@ -41,108 +26,137 @@
 
     section {
       padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
     }
 
     .image-text {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 30px 0;
+      gap: 20px;
+    }
+
+    .image-text:nth-child(even) {
+      flex-direction: row-reverse;
     }
 
     .image-text img {
       width: 200px;
       height: auto;
       border-radius: 20px;
-      margin: 0 20px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      border: 5px solid #ffb6d9;
     }
 
-    .image-text p {
-      font-size: 20px;
+    .text-box {
+      background: rgba(255, 182, 217, 0.2);
+      padding: 15px 20px;
+      border-radius: 15px;
       max-width: 300px;
-    }
-
-    .buttons {
-      margin: 50px 0;
-    }
-
-    .buttons button {
-      background: #d8b4f8;
-      border: none;
-      padding: 15px 30px;
-      margin: 10px;
       font-size: 18px;
-      border-radius: 10px;
+      line-height: 1.5;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* زر الأغنية (قلب) */
+    #musicBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 30px;
+      background: none;
+      border: none;
       cursor: pointer;
       transition: 0.3s;
+      color: #bbb;
     }
 
-    .buttons button:hover {
-      background: #ffb6d9;
-      color: white;
-    }
-
-    .response {
-      margin-top: 20px;
-      font-size: 22px;
-      font-weight: bold;
+    #musicBtn.active {
       color: #ff3385;
+      transform: scale(1.2);
     }
   </style>
 </head>
 <body>
 
-  <!-- الاغنية -->
-  <audio autoplay loop>
-    <source src="I Wanna Be Yours.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
   <!-- العنوان -->
   <header>
     <h1>For My Love 💖</h1>
-    <p>Just a little gift made with love</p>
+    <p>A little gift made with love 🌸</p>
   </header>
 
   <!-- الصور والنصوص -->
   <section>
     <div class="image-text">
-      <img src="images/ph1.jpg" alt="ph1.jpg">
-      <p>هاي أول صورة بتحبك كثير 💕</p>
+      <img src="images/ph1.jpg" alt="Ph1.jpg">
+      <div class="text-box">النص الأول هون 💕</div>
     </div>
 
     <div class="image-text">
-      <p>كل لحظة معك أجمل من يلي قبلها 🌸</p>
       <img src="images/photo2.jpg" alt="Photo 2">
+      <div class="text-box">النص الثاني هون 🌸</div>
     </div>
 
     <div class="image-text">
       <img src="images/photo3.jpg" alt="Photo 3">
-      <p>إنتي وردة عم تزين حياتي 🌹</p>
+      <div class="text-box">النص الثالث هون 💖</div>
+    </div>
+
+    <div class="image-text">
+      <img src="images/photo4.jpg" alt="Photo 4">
+      <div class="text-box">النص الرابع هون 🌹</div>
+    </div>
+
+    <div class="image-text">
+      <img src="images/photo5.jpg" alt="Photo 5">
+      <div class="text-box">النص الخامس هون 🌷</div>
+    </div>
+
+    <div class="image-text">
+      <img src="images/photo6.jpg" alt="Photo 6">
+      <div class="text-box">النص السادس هون 💞</div>
+    </div>
+
+    <div class="image-text">
+      <img src="images/photo7.jpg" alt="Photo 7">
+      <div class="text-box">النص السابع هون 🌼</div>
+    </div>
+
+    <div class="image-text">
+      <img src="images/photo8.jpg" alt="Photo 8">
+      <div class="text-box">النص الثامن هون 💐</div>
+    </div>
+
+    <div class="image-text">
+      <img src="images/photo9.jpg" alt="Photo 9">
+      <div class="text-box">النص التاسع هون 💌</div>
     </div>
   </section>
 
-  <!-- الأزرار -->
-  <div class="buttons">
-    <button onclick="showResponse('❤️ طبعاً بحبك! ❤️')">هل بتحبيني؟</button>
-    <button onclick="showResponse('🌸 رح نظل مع بعض للأبد 🌸')">وعد للأبد؟</button>
-    <div class="response" id="response"></div>
-  </div>
+  <!-- زر الأغنية -->
+  <button id="musicBtn">❤</button>
 
-<script>
-  function playSong() {
-    document.getElementById("mySong").play();
-  }
-</script>
+  <!-- الصوت -->
+  <audio id="mySong" loop>
+    <source src="your-song.mp3" type="audio/mpeg">
+  </audio>
 
+  <script>
+    const musicBtn = document.getElementById("musicBtn");
+    const mySong = document.getElementById("mySong");
+
+    musicBtn.addEventListener("click", () => {
+      if (mySong.paused) {
+        mySong.play();
+        musicBtn.classList.add("active");
+      } else {
+        mySong.pause();
+        musicBtn.classList.remove("active");
+      }
+    });
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
