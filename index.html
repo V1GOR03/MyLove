@@ -1,182 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Love Website</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #1c1c1c url('https://i.imgur.com/xVXn7Da.png') repeat; /* خلفية ورود وقلوب */
-      color: #fff;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقعي</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
 
-    .container {
-      width: 90%;
-      margin: auto;
-      padding-top: 50px;
-    }
+        /* قلوب متحركة */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            clip-path: polygon(50% 0%, 61% 8%, 68% 23%, 68% 38%, 50% 60%, 32% 38%, 32% 23%, 39% 8%);
+            animation: float 10s infinite;
+            opacity: 0.7;
+        }
 
-    .photo-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      margin: 40px 0;
-      padding: 20px;
-      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
-      transform: rotate(-2deg);
-      animation: fadeIn 1s ease-in-out forwards;
-      opacity: 0;
-    }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(1); }
+            50% { transform: translateY(50vh) scale(1.2); }
+            100% { transform: translateY(-10vh) scale(1); }
+        }
 
-    .photo-card:nth-child(even) {
-      transform: rotate(2deg);
-    }
+        /* معرض الصور */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 50px 20px;
+            justify-content: center;
+        }
 
-    .photo-card img {
-      max-width: 200px;
-      border-radius: 15px;
-      border: 3px solid pink;
-      margin-bottom: 15px;
-    }
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
 
-    .text-box {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 15px;
-      border-radius: 10px;
-      text-align: left;
-      line-height: 1.6;
-      font-size: 16px;
-    }
+        .gallery img:hover { transform: scale(1.1); }
 
-    /* زر القلب */
-    .heart-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #ff4d6d;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 77, 109, 0.5);
-      transition: background 0.3s;
-    }
+        /* قسم النصوص */
+        .content {
+            text-align: center;
+            padding: 30px 20px;
+        }
 
-    .heart-btn.active {
-      background: #ff85a2;
-    }
+        .content h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
 
-    .heart-btn::before {
-      content: "❤";
-      font-size: 24px;
-      color: white;
-    }
+        .content p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 10px auto;
+        }
 
-    /* أزرار الخيارات */
-    .choices {
-      margin: 30px 0;
-    }
+        /* قسم الأغنية */
+        .music {
+            text-align: center;
+            padding: 30px 20px;
+        }
 
-    .choices button {
-      background: #ff4d6d;
-      border: none;
-      color: white;
-      padding: 12px 25px;
-      margin: 10px;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
-    }
+        .music button {
+            background-color: #ff4b5c;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-    .choices button:hover {
-      transform: scale(1.1);
-      background: #ff85a2;
-    }
-
-    .response {
-      display: none;
-      margin-top: 15px;
-      font-size: 18px;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    /* أنيميشن */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+        .music button:hover { background-color: #ff1f3d; }
+    </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>My Love 💖</h1>
+    <!-- قلوب -->
+    <div id="hearts"></div>
 
-    <!-- صور + كتابة -->
-    <div class="photo-card"><img src="https://via.placeholder.com/200"><div class="text-box">Your text here...</div></div>
-    <div class="photo-card"><img src="https://via.placeholder.com/200"><div class="text-box">Your text here...</div></div>
-    <div class="photo-card"><img src="https://via.placeholder.com/200"><div class="text-box">Your text here...</div></div>
-    <div class="photo-card"><img src="https://via.placeholder.com/200"><div class="text-box">Your text here...</div></div>
-    <div class="photo-card"><img src="https://via.placeholder.com/200"><div class="text-box">Your text here...</div></div>
-    <div class="photo-card"><img src="https://via.placeholder.com/200"><div class="text-box">Your text here...</div></div>
-    <div class="photo-card"><img src="https://via.placeholder.com/200"><div class="text-box">Your text here...</div></div>
-    <div class="photo-card"><img src="https://via.placeholder.com/200"><div class="text-box">Your text here...</div></div>
-    <div class="photo-card"><img src="https://via.placeholder.com/200"><div class="text-box">Your text here...</div></div>
-
-    <!-- أزرار خيارات -->
-    <div class="choices">
-      <button onclick="showResponse('Yes')">Yes 💕</button>
-      <button onclick="showResponse('No')">No 💔</button>
+    <!-- النصوص -->
+    <div class="content">
+        <h1>عنوانك هنا</h1>
+        <p>النص أو الفقرة الأولى توضع هنا. يمكنك تعديلها كما تريد.</p>
+        <p>النص أو الفقرة الثانية توضع هنا.</p>
     </div>
-    <div id="response" class="response"></div>
-  </div>
 
-  <!-- زر الأغنية -->
-  <div class="heart-btn" onclick="toggleMusic()"></div>
-  <audio id="bg-music" src="Somewhere Only We Know.mp3"></audio>
+    <!-- معرض الصور -->
+    <div class="gallery" id="gallery">
+        <!-- أضف صورك المحلية هنا -->
+        <img src="images/photo1.jpg" alt="صورة 1">
+        <img src="images/photo2.jpg" alt="صورة 2">
+        <img src="images/photo3.jpg" alt="صورة 3">
+        <img src="images/photo4.jpg" alt="صورة 4">
+        <img src="images/photo5.jpg" alt="صورة 5">
+        <img src="images/photo6.jpg" alt="صورة 6">
+        <img src="images/photo7.jpg" alt="صورة 7">
+        <img src="images/photo8.jpg" alt="صورة 8">
+        <img src="images/photo9.jpg" alt="صورة 9">
+    </div>
 
-  <script>
-    // تشغيل/إيقاف الأغنية
-    function toggleMusic() {
-      const music = document.getElementById("bg-music");
-      const heartBtn = document.querySelector(".heart-btn");
-      if (music.paused) {
-        music.play();
-        heartBtn.classList.add("active");
-      } else {
-        music.pause();
-        heartBtn.classList.remove("active");
-      }
-    }
+    <!-- تشغيل الأغنية -->
+    <div class="music">
+        <audio id="song" src="Somewhere Only We Know.mp3"></audio>
+        <button id="playBtn">تشغيل الأغنية</button>
+    </div>
 
-    // إظهار الرد + إرساله لتيلجرام
-    function showResponse(choice) {
-      const responseDiv = document.getElementById("response");
-      responseDiv.innerHTML = "You chose: " + choice;
-      responseDiv.style.display = "block";
-
-      // إرسال الرد لتيلجرام
-      const botToken = "YOUR_BOT_TOKEN";
-      const chatId = "YOUR_CHAT_ID";
-      const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent("Choice: " + choice)}`;
-      fetch(url);
-    }
-
-    // أنيميشن عند التمرير
-    const cards = document.querySelectorAll('.photo-card');
-    window.addEventListener('scroll', () => {
-      cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          card.style.opacity = "1";
+    <script>
+        // إنشاء قلوب عشوائية
+        const heartsContainer = document.getElementById('hearts');
+        for(let i=0; i<30; i++){
+            let heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+            heart.style.width = 15 + Math.random() * 25 + 'px';
+            heart.style.height = heart.style.width;
+            heartsContainer.appendChild(heart);
         }
-      });
-    });
-  </script>
+
+        // زر الأغنية
+        const song = document.getElementById('song');
+        const playBtn = document.getElementById('playBtn');
+        playBtn.addEventListener('click', () => {
+            if(song.paused){
+                song.play();
+                playBtn.textContent = "إيقاف الأغنية";
+            } else {
+                song.pause();
+                playBtn.textContent = "تشغيل الأغنية";
+            }
+        });
+    </script>
 </body>
 </html>
