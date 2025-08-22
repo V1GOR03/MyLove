@@ -1,4 +1,4 @@
-// 1️⃣ إنشاء القلوب والزهور المتحركة
+// إنشاء القلوب والزهور المتحركة
 const colors = ['heart','flower'];
 for(let i=0; i<30; i++){
     let item = document.createElement('div');
@@ -23,7 +23,7 @@ for(let i=0; i<30; i++){
     document.body.appendChild(item);
 }
 
-// 2️⃣ حركة القلوب والزهور (keyframes)
+// حركة القلوب والزهور (keyframes)
 const style = document.createElement('style');
 style.innerHTML = `
 @keyframes float {
@@ -34,7 +34,7 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-// 3️⃣ زر الأغنية
+// زر الأغنية
 const musicBtn = document.getElementById('musicBtn');
 const song = document.getElementById('song');
 
@@ -48,7 +48,7 @@ musicBtn.addEventListener('click', () => {
     }
 });
 
-// 4️⃣ الأزرار التفاعلية
+// الأزرار التفاعلية
 const btn1 = document.getElementById('btn1');
 const btn2 = document.getElementById('btn2');
 const response = document.getElementById('response');
