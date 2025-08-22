@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>موقعي</title>
+<title>معرض القلوب</title>
 <style>
 body {
     background-color: #121212;
@@ -14,7 +14,7 @@ body {
     position: relative;
 }
 
-/* القلوب الملونة عشوائية حقيقية */
+/* القلوب الملونة المتحركة */
 .heart {
     position: absolute;
     width: 20px; height: 20px;
@@ -47,25 +47,26 @@ body {
 }
 .section img:hover { transform: scale(1.1); }
 
-/* فريم رفيع ملون لكل صورة */
-.section img {
-    border: 3px solid #ff4b5c;
-    position: relative;
-}
+/* فريمات مختلفة لكل صورة */
+.section:nth-child(1) img { border: 5px solid #ff4b5c; border-radius: 20px; }
+.section:nth-child(2) img { border: 5px dashed #ffb400; border-radius: 50%; }
+.section:nth-child(3) img { border: 5px double #4cffd1; border-radius: 10px; }
+.section:nth-child(4) img { border: 5px dotted #6a5cff; border-radius: 30px; }
+.section:nth-child(5) img { border: 5px solid #ff6a9f; border-radius: 5px; box-shadow: 0 0 20px #ff6a9f; }
+.section:nth-child(6) img { border: 5px solid #ff8f4b; border-radius: 25px; }
+.section:nth-child(7) img { border: 5px solid #ff4b5c; border-radius: 15px; box-shadow: 0 0 15px #ff4b5c; }
+.section:nth-child(8) img { border: 5px dashed #ffb400; border-radius: 50%; }
+.section:nth-child(9) img { border: 5px double #4cffd1; border-radius: 20px; }
 
-/* قلب صغير فوق الصورة */
+/* قلب صغير فوق كل صورة */
 .small-heart {
     position: absolute;
-    width: 25px;
-    height: 25px;
+    width: 25px; height: 25px;
     background-color: #ff1744;
     clip-path: polygon(50% 0%, 61% 12%, 75% 12%, 88% 25%, 88% 38%, 75% 50%, 50% 75%, 25% 50%, 12% 38%, 12% 25%, 25% 12%, 39% 12%);
     animation: beat 1s infinite;
-    top: 10px;
-    right: 10px;
+    top: 10px; right: 10px;
 }
-
-/* نبض القلب */
 @keyframes beat {
     0%, 100% { transform: scale(1);}
     50% { transform: scale(1.3);}
@@ -88,30 +89,6 @@ body {
     border-radius: 15px;
     text-align: center;
     font-size: 16px;
-}
-
-/* زر الأغنية على شكل قلب */
-.music-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background-color: #ff4b5c;
-    clip-path: polygon(50% 0%, 61% 12%, 75% 12%, 88% 25%, 88% 38%, 75% 50%, 50% 75%, 25% 50%, 12% 38%, 12% 25%, 25% 12%, 39% 12%);
-    cursor: pointer;
-    display:flex; justify-content:center; align-items:center;
-    transition: transform 0.3s, background-color 0.5s;
-}
-.music-btn.playing {
-    animation: pulse 1s infinite;
-    background-color: #ff1f3d;
-    transform: scale(1.2);
-}
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); }
-    100% { transform: scale(1); }
 }
 
 /* أزرار تفاعلية */
@@ -138,6 +115,29 @@ body {
     font-size: 18px;
     margin-top: 20px;
     display: none;
+}
+
+/* زر الأغنية على شكل قلب */
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px; height: 60px;
+    background-color: #ff4b5c;
+    clip-path: polygon(50% 0%, 61% 12%, 75% 12%, 88% 25%, 88% 38%, 75% 50%, 50% 75%, 25% 50%, 12% 38%, 12% 25%, 25% 12%, 39% 12%);
+    cursor: pointer;
+    display:flex; justify-content:center; align-items:center;
+    transition: transform 0.3s, background-color 0.5s;
+}
+.music-btn.playing {
+    animation: pulse 1s infinite;
+    background-color: #ff1f3d;
+    transform: scale(1.2);
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
 }
 </style>
 </head>
@@ -167,6 +167,48 @@ body {
     </div>
     <div class="text">نص 3 بجانب الصورة</div>
 </div>
+<div class="section">
+    <div style="position: relative;">
+        <img src="images/photo4.jpg" alt="صورة 4">
+        <div class="small-heart"></div>
+    </div>
+    <div class="text">نص 4 بجانب الصورة</div>
+</div>
+<div class="section">
+    <div style="position: relative;">
+        <img src="images/photo5.jpg" alt="صورة 5">
+        <div class="small-heart"></div>
+    </div>
+    <div class="text">نص 5 بجانب الصورة</div>
+</div>
+<div class="section">
+    <div style="position: relative;">
+        <img src="images/photo6.jpg" alt="صورة 6">
+        <div class="small-heart"></div>
+    </div>
+    <div class="text">نص 6 بجانب الصورة</div>
+</div>
+<div class="section">
+    <div style="position: relative;">
+        <img src="images/photo7.jpg" alt="صورة 7">
+        <div class="small-heart"></div>
+    </div>
+    <div class="text">نص 7 بجانب الصورة</div>
+</div>
+<div class="section">
+    <div style="position: relative;">
+        <img src="images/photo8.jpg" alt="صورة 8">
+        <div class="small-heart"></div>
+    </div>
+    <div class="text">نص 8 بجانب الصورة</div>
+</div>
+<div class="section">
+    <div style="position: relative;">
+        <img src="images/photo9.jpg" alt="صورة 9">
+        <div class="small-heart"></div>
+    </div>
+    <div class="text">نص 9 بجانب الصورة</div>
+</div>
 
 <!-- نص صغير منفصل -->
 <div class="small-text">هذا النص الصغير مع فريم أسفل الصور</div>
@@ -183,6 +225,7 @@ body {
 <audio id="song" src="Somewhere Only We Know.mp3"></audio>
 
 <script>
+// توليد القلوب العشوائية
 const colors = ["#ff4b5c","#ffb400","#4cffd1","#6a5cff","#ff6a9f","#ff8f4b"];
 const heartsContainer = document.getElementById('hearts');
 for(let i=0;i<50;i++){
