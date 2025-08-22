@@ -14,27 +14,27 @@ body {
     position: relative;
 }
 
-/* القلوب الصغيرة الملونة بنفس شكل زر الأغنية */
+/* القلوب الملونة كلها */
 .heart {
     position: absolute;
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     background-color: red;
     transform: rotate(-45deg);
-    animation: float 10s linear infinite;
     opacity: 0.8;
+    animation: float linear infinite;
 }
 .heart::before,
 .heart::after {
     content: "";
     position: absolute;
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     background-color: inherit;
     border-radius: 50%;
 }
-.heart::before { top: -7.5px; left: 0; }
-.heart::after { left: 7.5px; top: 0; }
+.heart::before { top: -6px; left: 0; }
+.heart::after { left: 6px; top: 0; }
 
 @keyframes float {
     0% { transform: translateY(-10%) rotate(-45deg) scale(1); }
@@ -212,23 +212,21 @@ const colors = ["#ff4b5c","#ffb400","#4cffd1","#6a5cff","#ff6a9f","#ff8f4b"];
 const heartsContainer = document.getElementById('hearts');
 let heartsArray = [];
 
-function createHearts() {
-    for(let i=0;i<50;i++){
-        let heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
-        heart.style.left = Math.random()*100+'vw';
-        heart.style.top = Math.random()*100+'vh';
-        heart.style.width = 10 + Math.random()*15+'px';
-        heart.style.height = heart.style.width;
-        heart.style.animationDuration = 5 + Math.random()*5 + 's';
-        heartsContainer.appendChild(heart);
-        heartsArray.push(heart);
-    }
+// إنشاء مئات القلوب
+for(let i=0;i<150;i++){
+    let heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+    heart.style.left = Math.random()*100+'vw';
+    heart.style.top = Math.random()*100+'vh';
+    heart.style.width = 8 + Math.random()*10+'px';
+    heart.style.height = heart.style.width;
+    heart.style.animationDuration = 5 + Math.random()*7 + 's';
+    heartsContainer.appendChild(heart);
+    heartsArray.push(heart);
 }
 
-// إنشاء القلوب لكنها مخفية في البداية
-createHearts();
+// في البداية مخفية
 heartsArray.forEach(h => h.style.display = "none");
 
 // زر الأغنية
@@ -263,4 +261,3 @@ btn2.addEventListener('click', ()=>{
 </script>
 </body>
 </html>
-
