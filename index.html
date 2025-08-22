@@ -14,34 +14,6 @@ body {
     position: relative;
 }
 
-/* القلوب الملونة كلها */
-.heart {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background-color: red;
-    transform: rotate(-45deg);
-    opacity: 0.8;
-    animation: float linear infinite;
-}
-.heart::before,
-.heart::after {
-    content: "";
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background-color: inherit;
-    border-radius: 50%;
-}
-.heart::before { top: -6px; left: 0; }
-.heart::after { left: 6px; top: 0; }
-
-@keyframes float {
-    0% { transform: translateY(-10%) rotate(-45deg) scale(1); }
-    50% { transform: translateY(50%) rotate(-45deg) scale(1.2); }
-    100% { transform: translateY(110%) rotate(-45deg) scale(1); }
-}
-
 /* أقسام الصور والنصوص */
 .section {
     display: flex;
@@ -153,8 +125,6 @@ body {
 </head>
 <body>
 
-<div id="hearts"></div>
-
 <!-- أقسام الصور والنصوص -->
 <div class="section">
     <img src="images/photo1.jpg" alt="صورة 1">
@@ -205,30 +175,9 @@ body {
 
 <!-- زر الأغنية -->
 <div class="music-btn" id="musicBtn"></div>
-<audio id="song" src="Somewhere Only We Know.mp3"></audio>
+<audio id="song" src="Somewhere Only We Know..mp3"></audio>
 
 <script>
-const colors = ["#ff4b5c","#ffb400","#4cffd1","#6a5cff","#ff6a9f","#ff8f4b"];
-const heartsContainer = document.getElementById('hearts');
-let heartsArray = [];
-
-// إنشاء مئات القلوب
-for(let i=0;i<150;i++){
-    let heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
-    heart.style.left = Math.random()*100+'vw';
-    heart.style.top = Math.random()*100+'vh';
-    heart.style.width = 8 + Math.random()*10+'px';
-    heart.style.height = heart.style.width;
-    heart.style.animationDuration = 5 + Math.random()*7 + 's';
-    heartsContainer.appendChild(heart);
-    heartsArray.push(heart);
-}
-
-// في البداية مخفية
-heartsArray.forEach(h => h.style.display = "none");
-
 // زر الأغنية
 const musicBtn = document.getElementById('musicBtn');
 const song = document.getElementById('song');
@@ -236,11 +185,9 @@ musicBtn.addEventListener('click', ()=>{
     if(song.paused){
         song.play();
         musicBtn.classList.add('playing');
-        heartsArray.forEach(h => h.style.display = "block");
     } else {
         song.pause();
         musicBtn.classList.remove('playing');
-        heartsArray.forEach(h => h.style.display = "none");
     }
 });
 
