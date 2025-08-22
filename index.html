@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>معرض القلوب</title>
+<title>موقعي</title>
 <style>
 body {
     background-color: #121212;
     color: #fff;
-    font-family: Arial, sans-serif;
-    margin:0; padding:0;
-    overflow-x:hidden;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
     position: relative;
 }
 
 /* القلوب الملونة المتحركة */
 .heart {
     position: absolute;
-    width: 20px; height: 20px;
-    background-color: red;
-    clip-path: polygon(50% 0%, 61% 12%, 75% 12%, 88% 25%, 88% 38%, 75% 50%, 50% 75%, 25% 50%, 12% 38%, 12% 25%, 25% 12%, 39% 12%);
-    animation: float 6s linear infinite;
+    clip-path: polygon(50% 0%, 61% 8%, 68% 23%, 68% 38%, 50% 60%, 32% 38%, 32% 23%, 39% 8%);
+    animation: float 10s linear infinite;
     opacity: 0.8;
 }
 @keyframes float {
-    0% { transform: translateY(0) rotate(0deg);}
-    100% { transform: translateY(-1000px) rotate(360deg);}
+    0% { transform: translateY(-10%) scale(1); }
+    50% { transform: translateY(50%) scale(1.2); }
+    100% { transform: translateY(110%) scale(1); }
 }
 
 /* أقسام الصور والنصوص */
@@ -36,18 +36,23 @@ body {
     margin: 50px 20px;
     flex-wrap: wrap;
     gap: 30px;
+    transition: all 0.3s ease;
 }
 .section:nth-child(even) { flex-direction: row-reverse; }
 
 .section img {
-    width: 250px; height: 250px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
     border-radius: 15px;
 }
-.section img:hover { transform: scale(1.1); }
+.section img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(255,75,92,0.5);
+}
 
-/* فريمات مختلفة لكل صورة */
+/* فريمات مختلفة */
 .section:nth-child(1) img { border: 5px solid #ff4b5c; border-radius: 20px; }
 .section:nth-child(2) img { border: 5px dashed #ffb400; border-radius: 50%; }
 .section:nth-child(3) img { border: 5px double #4cffd1; border-radius: 10px; }
@@ -58,27 +63,15 @@ body {
 .section:nth-child(8) img { border: 5px dashed #ffb400; border-radius: 50%; }
 .section:nth-child(9) img { border: 5px double #4cffd1; border-radius: 20px; }
 
-/* قلب صغير فوق كل صورة */
-.small-heart {
-    position: absolute;
-    width: 25px; height: 25px;
-    background-color: #ff1744;
-    clip-path: polygon(50% 0%, 61% 12%, 75% 12%, 88% 25%, 88% 38%, 75% 50%, 50% 75%, 25% 50%, 12% 38%, 12% 25%, 25% 12%, 39% 12%);
-    animation: beat 1s infinite;
-    top: 10px; right: 10px;
-}
-@keyframes beat {
-    0%, 100% { transform: scale(1);}
-    50% { transform: scale(1.3);}
-}
-
-/* النصوص بجانب الصور */
+/* النصوص */
 .section .text {
     max-width: 400px;
-    background: rgba(255,75,92,0.1);
+    background: rgba(255, 75, 92, 0.1);
     padding: 20px;
     border-radius: 15px;
+    transition: transform 0.3s;
 }
+.section .text:hover { transform: scale(1.05); }
 
 /* نص صغير منفصل */
 .small-text {
@@ -89,44 +82,22 @@ body {
     border-radius: 15px;
     text-align: center;
     font-size: 16px;
+    background: rgba(255, 75, 92, 0.05);
 }
 
-/* أزرار تفاعلية */
-.buttons {
-    display: flex;
-    justify-content: center;
-    margin: 30px 0;
-    gap: 20px;
-}
-.buttons button {
-    padding: 12px 25px;
-    font-size: 16px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    background-color: #ff4b5c;
-    color: #fff;
-    transition: background-color 0.3s;
-}
-.buttons button:hover { background-color: #ff1f3d; }
-
-.response {
-    text-align: center;
-    font-size: 18px;
-    margin-top: 20px;
-    display: none;
-}
-
-/* زر الأغنية على شكل قلب */
+/* زر الأغنية */
 .music-btn {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 60px; height: 60px;
+    width: 60px;
+    height: 60px;
     background-color: #ff4b5c;
-    clip-path: polygon(50% 0%, 61% 12%, 75% 12%, 88% 25%, 88% 38%, 75% 50%, 50% 75%, 25% 50%, 12% 38%, 12% 25%, 25% 12%, 39% 12%);
+    clip-path: polygon(50% 0%, 61% 8%, 68% 23%, 68% 38%, 50% 60%, 32% 38%, 32% 23%, 39% 8%);
     cursor: pointer;
-    display:flex; justify-content:center; align-items:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: transform 0.3s, background-color 0.5s;
 }
 .music-btn.playing {
@@ -139,6 +110,36 @@ body {
     50% { transform: scale(1.3); }
     100% { transform: scale(1); }
 }
+
+/* الأزرار التفاعلية */
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    gap: 20px;
+}
+.buttons button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(45deg, #ff4b5c, #ffb400);
+    color: #fff;
+    transition: all 0.3s;
+}
+.buttons button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #ff1f3d, #ff8f4b);
+}
+
+/* الاستجابة */
+.response {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+    display: none;
+}
 </style>
 </head>
 <body>
@@ -146,86 +147,28 @@ body {
 <div id="hearts"></div>
 
 <!-- أقسام الصور والنصوص -->
-<div class="section">
-    <div style="position: relative;">
-        <img src="images/photo1.jpg" alt="صورة 1">
-        <div class="small-heart"></div>
-    </div>
-    <div class="text">نص 1 بجانب الصورة</div>
-</div>
-<div class="section">
-    <div style="position: relative;">
-        <img src="images/photo2.jpg" alt="صورة 2">
-        <div class="small-heart"></div>
-    </div>
-    <div class="text">نص 2 بجانب الصورة</div>
-</div>
-<div class="section">
-    <div style="position: relative;">
-        <img src="images/photo3.jpg" alt="صورة 3">
-        <div class="small-heart"></div>
-    </div>
-    <div class="text">نص 3 بجانب الصورة</div>
-</div>
-<div class="section">
-    <div style="position: relative;">
-        <img src="images/photo4.jpg" alt="صورة 4">
-        <div class="small-heart"></div>
-    </div>
-    <div class="text">نص 4 بجانب الصورة</div>
-</div>
-<div class="section">
-    <div style="position: relative;">
-        <img src="images/photo5.jpg" alt="صورة 5">
-        <div class="small-heart"></div>
-    </div>
-    <div class="text">نص 5 بجانب الصورة</div>
-</div>
-<div class="section">
-    <div style="position: relative;">
-        <img src="images/photo6.jpg" alt="صورة 6">
-        <div class="small-heart"></div>
-    </div>
-    <div class="text">نص 6 بجانب الصورة</div>
-</div>
-<div class="section">
-    <div style="position: relative;">
-        <img src="images/photo7.jpg" alt="صورة 7">
-        <div class="small-heart"></div>
-    </div>
-    <div class="text">نص 7 بجانب الصورة</div>
-</div>
-<div class="section">
-    <div style="position: relative;">
-        <img src="images/photo8.jpg" alt="صورة 8">
-        <div class="small-heart"></div>
-    </div>
-    <div class="text">نص 8 بجانب الصورة</div>
-</div>
-<div class="section">
-    <div style="position: relative;">
-        <img src="images/photo9.jpg" alt="صورة 9">
-        <div class="small-heart"></div>
-    </div>
-    <div class="text">نص 9 بجانب الصورة</div>
-</div>
+<div class="section"><img src="images/photo1.jpg" alt=""><div class="text">نص 1</div></div>
+<div class="section"><img src="images/photo2.jpg" alt=""><div class="text">نص 2</div></div>
+<div class="section"><img src="images/photo3.jpg" alt=""><div class="text">نص 3</div></div>
+<div class="section"><img src="images/photo4.jpg" alt=""><div class="text">نص 4</div></div>
+<div class="section"><img src="images/photo5.jpg" alt=""><div class="text">نص 5</div></div>
+<div class="section"><img src="images/photo6.jpg" alt=""><div class="text">نص 6</div></div>
+<div class="section"><img src="images/photo7.jpg" alt=""><div class="text">نص 7</div></div>
+<div class="section"><img src="images/photo8.jpg" alt=""><div class="text">نص 8</div></div>
+<div class="section"><img src="images/photo9.jpg" alt=""><div class="text">نص 9</div></div>
 
-<!-- نص صغير منفصل -->
 <div class="small-text">هذا النص الصغير مع فريم أسفل الصور</div>
 
-<!-- أزرار تفاعلية -->
 <div class="buttons">
     <button id="btn1">اختيار 1</button>
     <button id="btn2">اختيار 2</button>
 </div>
 <div class="response" id="response"></div>
 
-<!-- زر الأغنية -->
 <div class="music-btn" id="musicBtn"></div>
 <audio id="song" src="Somewhere Only We Know.mp3"></audio>
 
 <script>
-// توليد القلوب العشوائية
 const colors = ["#ff4b5c","#ffb400","#4cffd1","#6a5cff","#ff6a9f","#ff8f4b"];
 const heartsContainer = document.getElementById('hearts');
 for(let i=0;i<50;i++){
@@ -234,8 +177,9 @@ for(let i=0;i<50;i++){
     heart.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
     heart.style.left = Math.random()*100+'vw';
     heart.style.top = Math.random()*100+'vh';
-    heart.style.width = 15 + Math.random()*30+'px';
-    heart.style.height = heart.style.width;
+    let size = 15 + Math.random()*30;
+    heart.style.width = size + 'px';
+    heart.style.height = size + 'px';
     heart.style.animationDuration = 5 + Math.random()*5 + 's';
     heartsContainer.appendChild(heart);
 }
@@ -268,5 +212,6 @@ btn2.addEventListener('click', ()=>{
     btn1.style.display = "none";
 });
 </script>
+
 </body>
 </html>
