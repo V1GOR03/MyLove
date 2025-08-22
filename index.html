@@ -14,11 +14,11 @@ body {
     position: relative;
 }
 
-/* القلوب الملونة عشوائية بشكل قلب كامل */
+/* القلوب الصغيرة الملونة بنفس شكل زر الأغنية */
 .heart {
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background-color: red;
     transform: rotate(-45deg);
     animation: float 10s linear infinite;
@@ -28,13 +28,13 @@ body {
 .heart::after {
     content: "";
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background-color: inherit;
     border-radius: 50%;
 }
-.heart::before { top: -10px; left: 0; }
-.heart::after { left: 10px; top: 0; }
+.heart::before { top: -7.5px; left: 0; }
+.heart::after { left: 7.5px; top: 0; }
 
 @keyframes float {
     0% { transform: translateY(-10%) rotate(-45deg) scale(1); }
@@ -90,10 +90,10 @@ body {
     font-size: 16px;
 }
 
-/* زر الأغنية على شكل قلب حقيقي */
+/* زر الأغنية على شكل قلب أصغر */
 .music-btn {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     background-color: #ff4b5c;
     position: fixed;
     bottom: 20px;
@@ -109,13 +109,13 @@ body {
 .music-btn::after {
     content: "";
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     background-color: inherit;
     border-radius: 50%;
 }
-.music-btn::before { top: -30px; left: 0; }
-.music-btn::after { left: 30px; top: 0; }
+.music-btn::before { top: -20px; left: 0; }
+.music-btn::after { left: 20px; top: 0; }
 .music-btn.playing { animation: pulse 1s infinite; background-color: #ff1f3d; transform: rotate(-45deg) scale(1.2); }
 
 @keyframes pulse {
@@ -210,17 +210,26 @@ body {
 <script>
 const colors = ["#ff4b5c","#ffb400","#4cffd1","#6a5cff","#ff6a9f","#ff8f4b"];
 const heartsContainer = document.getElementById('hearts');
-for(let i=0;i<50;i++){
-    let heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
-    heart.style.left = Math.random()*100+'vw';
-    heart.style.top = Math.random()*100+'vh';
-    heart.style.width = 15 + Math.random()*30+'px';
-    heart.style.height = heart.style.width;
-    heart.style.animationDuration = 5 + Math.random()*5 + 's';
-    heartsContainer.appendChild(heart);
+let heartsArray = [];
+
+function createHearts() {
+    for(let i=0;i<50;i++){
+        let heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+        heart.style.left = Math.random()*100+'vw';
+        heart.style.top = Math.random()*100+'vh';
+        heart.style.width = 10 + Math.random()*15+'px';
+        heart.style.height = heart.style.width;
+        heart.style.animationDuration = 5 + Math.random()*5 + 's';
+        heartsContainer.appendChild(heart);
+        heartsArray.push(heart);
+    }
 }
+
+// إنشاء القلوب لكنها مخفية في البداية
+createHearts();
+heartsArray.forEach(h => h.style.display = "none");
 
 // زر الأغنية
 const musicBtn = document.getElementById('musicBtn');
@@ -229,9 +238,11 @@ musicBtn.addEventListener('click', ()=>{
     if(song.paused){
         song.play();
         musicBtn.classList.add('playing');
+        heartsArray.forEach(h => h.style.display = "block");
     } else {
         song.pause();
         musicBtn.classList.remove('playing');
+        heartsArray.forEach(h => h.style.display = "none");
     }
 });
 
