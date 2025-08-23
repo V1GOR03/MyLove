@@ -19,6 +19,7 @@
       pointer-events: none;
       font-size: 20px;
     }
+
     @keyframes float {
       0% { transform: translateY(-10%) scale(1); }
       50% { transform: translateY(50%) scale(1.2); }
@@ -30,27 +31,26 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 40px 0;
+      margin: 50px 0;
       padding: 20px;
       gap: 20px;
-      flex-wrap: wrap;
     }
     .section img {
-      max-width: 350px;
-      width: 100%;
+      width: 300px;
       border-radius: 20px;
-      border: 4px solid #ff99cc;
-      box-shadow: 0 0 20px #ff66cc;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      border: 5px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 15px rgba(255,192,203,0.7);
     }
     .text {
-      max-width: 350px;
+      max-width: 300px;
       font-size: 18px;
       line-height: 1.6;
-      background: rgba(255,255,255,0.8);
-      padding: 20px;
+      background: rgba(255,255,255,0.7);
+      padding: 15px;
       border-radius: 15px;
-      border: 2px solid #ff99cc;
-      box-shadow: 0 0 15px #ff66cc;
+      border: 3px solid #ff4b5c;
+      box-shadow: 0 0 10px rgba(255,182,193,0.5);
     }
 
     /* الأزرار */
@@ -60,14 +60,13 @@
       right: 20px;
       display: flex;
       gap: 15px;
-      z-index: 1000;
     }
     button {
       background: #ff6699;
       border: none;
-      padding: 15px 22px;
+      padding: 12px 18px;
       border-radius: 30px;
-      font-size: 18px;
+      font-size: 16px;
       cursor: pointer;
       transition: transform 0.2s ease, background 0.3s ease;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -77,9 +76,7 @@
       background: #ff3366;
       transform: scale(1.1);
     }
-    button.playing {
-      background: #66cc66;
-    }
+    button.playing { background: #66cc66; }
 
     /* الإيموجيات */
     .emoji {
@@ -93,51 +90,38 @@
       100% { transform: translateY(-150px) scale(1.5); opacity: 0; }
     }
 
-    /* قسم الاختيارات */
-    .choices {
-      margin: 60px auto;
-      max-width: 600px;
-      text-align: center;
-    }
-    .choices .title {
-      background: rgba(255,255,255,0.8);
-      border: 2px solid #ff99cc;
-      box-shadow: 0 0 15px #ff66cc;
-      padding: 15px;
-      border-radius: 15px;
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-    .choices button {
-      padding: 12px 20px;
-      font-size: 16px;
-    }
-    .reply {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      background: rgba(255,255,255,0.9);
-      border: 2px solid #ff99cc;
-      border-radius: 15px;
-      box-shadow: 0 0 15px #ff66cc;
-      font-size: 18px;
-    }
-    .arrow {
-      font-size: 22px;
-      margin-top: 10px;
-      animation: bounce 1.2s infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(8px); }
+    /* Media Queries للشاشات الصغيرة */
+    @media (max-width: 768px) {
+      .section {
+        flex-direction: column;
+        gap: 15px;
+        margin: 30px 10px;
+      }
+
+      .section img {
+        width: 90%;
+        max-width: 320px;
+      }
+
+      .text {
+        max-width: 90%;
+        font-size: 16px;
+        padding: 12px;
+      }
+
+      .buttons {
+        bottom: 10px;
+        right: 10px;
+        gap: 10px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- الصور والنصوص -->
+  <!-- 9 صور مع نصوص -->
   <div class="section">
-    <img src="images/ph1.jpg" alt="صورة">
+    <img src="images/ph1/ph1b.jpg" alt="صورة">
     <div class="text">هذا النص يرافق الصورة الأولى.</div>
   </div>
   <div class="section">
@@ -150,10 +134,10 @@
   </div>
   <div class="section">
     <div class="text">هذا النص يرافق الصورة الرابعة.</div>
-    <img src="images/ph1/ph1b4.jpg" alt="صورة">
+    <img src="images/ph1.jpg" alt="صورة">
   </div>
   <div class="section">
-    <img src="images/ph1/ph1b5.jpg" alt="صورة">
+    <img src="images/ph1.jpg" alt="صورة">
     <div class="text">هذا النص يرافق الصورة الخامسة.</div>
   </div>
   <div class="section">
@@ -173,25 +157,10 @@
     <div class="text">هذا النص يرافق الصورة التاسعة.</div>
   </div>
 
-  <!-- قسم الاختيارات -->
-  <div class="choices">
-    <div class="title">اختر أحد الخيارين 👇</div>
-    <button id="choice1">الخيار الأول</button>
-    <button id="choice2">الخيار الثاني</button>
-    <div id="reply1" class="reply">
-      <div class="arrow">⬇️</div>
-      هذا هو الرد الخاص بالخيار الأول ❤️
-    </div>
-    <div id="reply2" class="reply">
-      <div class="arrow">⬇️</div>
-      هذا هو الرد الخاص بالخيار الثاني 💙
-    </div>
-  </div>
-
   <!-- الأزرار -->
   <div class="buttons">
-    <button id="musicBtn">🎵 هاي الأغنية بتذكرني فيكي</button>
-    <button id="emojiBtn">💖 اكبسي وغيري جو</button>
+    <button id="musicBtn">🎵 تشغيل/إيقاف</button>
+    <button id="emojiBtn">💖 رش إيموجيات</button>
   </div>
 
   <!-- ملف الأغنية -->
@@ -237,21 +206,6 @@
         document.body.appendChild(emoji);
         setTimeout(() => emoji.remove(), 3000);
       }
-    });
-
-    // الاختيارات
-    const choice1 = document.getElementById("choice1");
-    const choice2 = document.getElementById("choice2");
-    const reply1 = document.getElementById("reply1");
-    const reply2 = document.getElementById("reply2");
-
-    choice1.addEventListener("click", () => {
-      choice2.style.display = "none";
-      reply1.style.display = "block";
-    });
-    choice2.addEventListener("click", () => {
-      choice1.style.display = "none";
-      reply2.style.display = "block";
     });
   </script>
 </body>
