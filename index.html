@@ -2,51 +2,62 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>صفحة قلوب وورد</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة القلوب والورود</title>
   <style>
     body {
-      margin: 0;
+      background: pink;
       font-family: Arial, sans-serif;
-      background-color: pink;
+      margin: 0;
+      padding: 0;
       overflow-x: hidden;
     }
 
     /* الخلفية المتحركة */
-    .background-item {
+    .emoji-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .emoji {
       position: absolute;
+      font-size: 24px;
+      animation: floatUp 10s linear infinite;
       opacity: 0.7;
-      animation: float 8s linear infinite;
-      pointer-events: none;
-      font-size: 20px;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh); opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
     }
 
-    @keyframes float {
-      0% { transform: translateY(-10%) scale(1); }
-      50% { transform: translateY(50%) scale(1.2); }
-      100% { transform: translateY(110%) scale(1); }
-    }
-
-    /* قسم الصور والنصوص */
-    .section {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 50px 0;
-      padding: 20px;
+    /* شبكة الصور */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 20px;
+      padding: 20px;
     }
-    .section img {
-      width: 300px;
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-    .text {
-      max-width: 300px;
-      font-size: 18px;
-      line-height: 1.6;
-      background: rgba(255,255,255,0.7);
-      padding: 15px;
+    .card {
+      background: white;
       border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 100%;
+      height: 200px; /* كل الصور نفس الطول */
+      object-fit: cover; /* يملأ الإطار بدون قص أو تمدد غير مناسب */
+    }
+    .card p {
+      padding: 10px;
     }
 
     /* الأزرار */
@@ -56,131 +67,81 @@
       right: 20px;
       display: flex;
       gap: 15px;
+      z-index: 10;
     }
-    button {
-      background: #ff6699;
+    .btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
       border: none;
-      padding: 12px 18px;
-      border-radius: 30px;
-      font-size: 16px;
       cursor: pointer;
-      transition: transform 0.2s ease, background 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      color: white;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
     }
-    button:hover {
-      background: #ff3366;
-      transform: scale(1.1);
+    .btn:hover {
+      transform: scale(1.2);
     }
-    button.playing {
-      background: #66cc66;
-    }
-
-    /* الإيموجيات */
-    .emoji {
-      position: absolute;
-      font-size: 30px;
-      opacity: 0;
-      animation: fly 3s forwards;
-    }
-    @keyframes fly {
-      0% { transform: scale(0.5); opacity: 1; }
-      100% { transform: translateY(-150px) scale(1.5); opacity: 0; }
-    }
+    #musicBtn { background: #ff4d6d; color: white; }
+    #heartBtn { background: #ffd6e0; }
   </style>
 </head>
 <body>
+  <div class="emoji-bg" id="emojiBg"></div>
 
-  <!-- 9 صور مع نصوص -->
-  <div class="images">
-    <img src="images/ph1.jpg" alt="صورة">
-    <div class="text"> دايماً مشرقة ومتألقة يقلبي.</div>
-  </div>
-  <div class="section">
-    <div class="text">هذا النص يرافق الصورة الثانية.</div>
-    <img src="images/ph1/ph1b2.jpg" alt="صورة">
-  </div>
-  <div class="section">
-    <img src="images/ph1/ph1b3.jpg" alt="صورة">
-    <div class="text">هذا النص يرافق الصورة الثالثة.</div>
-  </div>
-  <div class="section">
-    <div class="text">هذا النص يرافق الصورة الرابعة.</div>
-    <img src="images/ph1/ph1b4.jpg" alt="صورة">
-  </div>
-  <div class="section">
-    <img src="images/ph1/ph1b5.jpg" alt="صورة">
-    <div class="text">هذا النص يرافق الصورة الخامسة.</div>
-  </div>
-  <div class="section">
-    <div class="text">هذا النص يرافق الصورة السادسة.</div>
-    <img src="images/ph1/ph1g.jpg" alt="صورة">
-  </div>
-  <div class="section">
-    <img src="images/ph1/ph1g2.jpg" alt="صورة">
-    <div class="text">هذا النص يرافق الصورة السابعة.</div>
-  </div>
-  <div class="section">
-    <div class="text">هذا النص يرافق الصورة الثامنة.</div>
-    <img src="images/ph1/ph1g3.jpg" alt="صورة">
-  </div>
-  <div class="section">
-    <img src="images/ph1/ph1g4.jpg" alt="صورة">
-    <div class="text">هذا النص يرافق الصورة التاسعة.</div>
+  <!-- الصور -->
+  <div class="gallery">
+    <div class="card"><img src="images/p1.jpg"><p>نص الصورة 1</p></div>
+    <div class="card"><img src="images/p2.jpg"><p>نص الصورة 2</p></div>
+    <div class="card"><img src="images/p3.jpg"><p>نص الصورة 3</p></div>
+    <div class="card"><img src="images/p4.jpg"><p>نص الصورة 4</p></div>
+    <div class="card"><img src="images/p5.jpg"><p>نص الصورة 5</p></div>
+    <div class="card"><img src="images/p6.jpg"><p>نص الصورة 6</p></div>
+    <div class="card"><img src="images/p7.jpg"><p>نص الصورة 7</p></div>
+    <div class="card"><img src="images/p8.jpg"><p>نص الصورة 8</p></div>
+    <div class="card"><img src="images/p9.jpg"><p>نص الصورة 9</p></div>
   </div>
 
   <!-- الأزرار -->
   <div class="buttons">
-    <button id="musicBtn">🎵 تشغيل/إيقاف</button>
-    <button id="emojiBtn">💖 رش إيموجيات</button>
+    <button id="musicBtn" class="btn">❤️</button>
+    <button id="heartBtn" class="btn">💖</button>
   </div>
 
-  <!-- ملف الأغنية -->
   <audio id="song" src="Somewhere Only We Know.mp3"></audio>
 
   <script>
-    // الخلفية العشوائية (قلوب + ورود)
-    const bgEmojis = ["🩵","💙","🩷","💛","💖","💕","🤍","🖤","🌷","🌹","🪷","🌸","💗","💓","💞","🧡","💚","💜"];
-    for (let i = 0; i < 40; i++) {
-      const el = document.createElement('div');
-      el.className = "background-item";
-      el.textContent = bgEmojis[Math.floor(Math.random() * bgEmojis.length)];
-      el.style.left = Math.random() * 100 + "vw";
-      el.style.top = Math.random() * 100 + "vh";
-      el.style.fontSize = 15 + Math.random()*25 + "px";
-      el.style.animationDuration = (6 + Math.random()*6) + "s";
-      document.body.appendChild(el);
-    }
-
     // زر الأغنية
-    const musicBtn = document.getElementById("musicBtn");
-    const song = document.getElementById("song");
-    musicBtn.addEventListener("click", () => {
+    const musicBtn = document.getElementById('musicBtn');
+    const song = document.getElementById('song');
+    musicBtn.addEventListener('click', () => {
       if(song.paused){
         song.play();
-        musicBtn.classList.add("playing");
+        musicBtn.textContent = "⏸️";
       } else {
         song.pause();
-        musicBtn.classList.remove("playing");
+        musicBtn.textContent = "❤️";
       }
     });
 
-    // زر الإيموجيات
-    const emojiBtn = document.getElementById("emojiBtn");
-    const emojis = ["🩵","💙","🩷","💛","💖","💕","🤍","🖤","🌷","🌹","🪷","🌸","💗","💓","💞","🧡","💛","💚","💙","💜"];
-    emojiBtn.addEventListener("click", () => {
+    // زر القلوب
+    const heartBtn = document.getElementById('heartBtn');
+    const emojis = ["🩵","💙","🩷","💛","💖","💕","🤍","🖤","🌷","🌹","🪷","🌸","💗","💓","💞","🧡","💚","💜"];
+    heartBtn.addEventListener('click', () => {
       for(let i=0; i<50; i++){
-        const emoji = document.createElement("div");
-        emoji.className = "emoji";
-        emoji.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+        const emoji = document.createElement('div');
+        emoji.classList.add('emoji');
+        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
         emoji.style.left = Math.random() * window.innerWidth + "px";
         emoji.style.top = Math.random() * window.innerHeight + "px";
+        emoji.style.fontSize = (20 + Math.random() * 40) + "px";
         document.body.appendChild(emoji);
-        setTimeout(() => emoji.remove(), 3000);
+        setTimeout(() => { emoji.remove(); }, 3000);
       }
     });
   </script>
 </body>
 </html>
-
-
