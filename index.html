@@ -37,9 +37,36 @@
     }
     .section img {
       width: 300px;
+      height: 200px; /* توحيد حجم الصور */
+      object-fit: cover; /* يمنع التشويه */
       border-radius: 20px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      border: 6px solid transparent;
+      background-image: linear-gradient(white, white),
+        repeating-linear-gradient(45deg, #ff99cc, #ff99cc 10px, #ff66b2 10px, #ff66b2 20px);
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+      position: relative;
     }
+
+    /* إطار الإيموجيات حول الصور */
+    .section img::after {
+      content: "🩵 💙 🩷 💛 💖 💕 🤍 🖤 🌷 🌹 🪷 🌸 💗 💓 💞 🧡 💚 💜";
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 18px;
+      white-space: nowrap;
+      animation: emojis 10s linear infinite;
+    }
+
+    @keyframes emojis {
+      0% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-5px); }
+      100% { transform: translateX(-50%) translateY(0); }
+    }
+
     .text {
       max-width: 300px;
       font-size: 18px;
@@ -93,22 +120,16 @@
 
   <!-- 9 صور مع نصوص -->
   <div class="section">
-    <img src="images/ph1.jpg" alt="صورة">
-    <div class="text">بحبك sssssssssssssssssssssssssssssssss
-      dddddddddddddd
-      ccccccccccccccc.</div>
+    <img src="images/ph1/ph1b.jpg" alt="صورة">
+    <div class="text">هذا النص يرافق الصورة الأولى.</div>
   </div>
   <div class="section">
-    <div class="text">يعمري ssssssssssssssss.</div>
-    <img src="images/ph1.jpg" alt="صورة">
+    <div class="text">هذا النص يرافق الصورة الثانية.</div>
+    <img src="images/ph1/ph1b2.jpg" alt="صورة">
   </div>
   <div class="section">
-    <img src="images/ph1.jpg" alt="صورة">
-    <div class="text">I Love You soooooooooooooooooooooooooooooo muchhhhhhh
-      ssssssssssssssssssssssss
-      sssssssssssssssssssss
-      sssssssssssssssssssssssssssssssssssss
-      sssssssssssssssssssssss.</div>
+    <img src="images/ph1/ph1b3.jpg" alt="صورة">
+    <div class="text">هذا النص يرافق الصورة الثالثة.</div>
   </div>
   <div class="section">
     <div class="text">هذا النص يرافق الصورة الرابعة.</div>
@@ -188,5 +209,3 @@
   </script>
 </body>
 </html>
-
-
