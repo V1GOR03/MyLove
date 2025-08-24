@@ -4,252 +4,257 @@
 <meta charset="UTF-8">
 <title>صفحة قلوب وورد</title>
 <style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: pink;
-    overflow-x: hidden;
-  }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: pink;
+  overflow-x: hidden;
+}
 
-  /* الخلفية المتحركة */
-  .background-item {
-    position: absolute;
-    opacity: 0.7;
-    animation: float 8s linear infinite;
-    pointer-events: none;
-    font-size: 20px;
-  }
-  @keyframes float {
-    0% { transform: translateY(-10%) scale(1); }
-    50% { transform: translateY(50%) scale(1.2); }
-    100% { transform: translateY(110%) scale(1); }
-  }
+/* الخلفية المتحركة */
+.background-item {
+  position: absolute;
+  opacity: 0.7;
+  animation: float 8s linear infinite;
+  pointer-events: none;
+  font-size: 20px;
+}
+@keyframes float {
+  0% { transform: translateY(-10%) scale(1); }
+  50% { transform: translateY(50%) scale(1.2); }
+  100% { transform: translateY(110%) scale(1); }
+}
 
-  /* قسم الصور والنصوص */
-  .section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 50px 0;
-    padding: 20px;
-    gap: 20px;
-  }
-  .section img {
-    width: 300px;
-    border-radius: 20px;
-    box-shadow: 0 0 15px rgba(255,105,153,0.7); /* إطار glow وردي */
-  }
-  .text {
-    max-width: 300px;
-    font-size: 18px;
-    line-height: 1.6;
-    background: rgba(255,255,255,0.7);
-    padding: 15px;
-    border-radius: 15px;
-  }
+/* قسم الصور والنصوص */
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0;
+  padding: 20px;
+  gap: 20px;
+}
+.section img {
+  width: 280px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #ffb6c1;
+  border: 3px solid #ff66aa;
+}
+.text {
+  max-width: 300px;
+  font-size: 18px;
+  line-height: 1.6;
+  background: rgba(255,255,255,0.7);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #ffb6c1;
+}
 
-  /* الأزرار الثابتة أسفل الصفحة */
-  .fixed-buttons {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-end;
-    z-index: 1000;
-  }
-  .fixed-buttons button {
-    background: #ff6699;
-    border: none;
-    padding: 12px 18px;
-    border-radius: 30px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    color: white;
-  }
-  .fixed-buttons button:hover { background: #ff3366; transform: scale(1.1); }
+/* البوكس الرئيسي */
+.main-box {
+  max-width: 600px;
+  margin: 50px auto 20px auto;
+  background: rgba(255,255,255,0.8);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 20px #ffb6c1;
+  font-size: 18px;
+}
 
-  /* الرد تحت الكبستين */
-  #response {
-    text-align: center;
-    font-size: 18px;
-    margin-top: 10px;
-    background: rgba(255,255,255,0.7);
-    padding: 10px 15px;
-    border-radius: 15px;
-    position: relative;
-  }
-  #response::after {
-    content: "⬇";
-    display: block;
-    margin-top: 5px;
-    font-size: 20px;
-  }
+/* الأسهم */
+.arrow {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 10px;
+}
 
-  /* زر الأغنية */
-  #musicBtn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #ff4b5c;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1000;
-  }
-  #musicBtn.playing { background: #ff1f3d; }
+/* صندوق الرد */
+.response-box {
+  max-width: 600px;
+  margin: 10px auto 50px auto;
+  background: rgba(255,255,255,0.8);
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+  display: none;
+  box-shadow: 0 0 15px #ffb6c1;
+  font-size: 18px;
+}
 
-  /* زر رش الإيموجيات */
-  #emojiBtn {
-    position: fixed;
-    bottom: 90px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #ffb6c1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1000;
-  }
+/* الكبستين */
+.choice-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+.choice-buttons button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background-color: #ff6699;
+  color: white;
+  transition: transform 0.2s, background 0.3s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.choice-buttons button:hover {
+  background-color: #ff3366;
+  transform: scale(1.1);
+}
 
-  /* الإيموجيات الطائرة */
-  .emoji {
-    position: absolute;
-    font-size: 30px;
-    opacity: 0;
-    animation: fly 3s forwards;
-  }
-  @keyframes fly {
-    0% { transform: scale(0.5); opacity: 1; }
-    100% { transform: translateY(-150px) scale(1.5); opacity: 0; }
-  }
+/* زر الأغنية وزر الإيموجيات */
+.buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 15px;
+  z-index: 1000;
+}
+.buttons button {
+  padding: 12px 18px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  background: #ff6699;
+  color: white;
+  border: none;
+  transition: transform 0.2s, background 0.3s;
+}
+.buttons button:hover { transform: scale(1.1); background: #ff3366; }
 
+/* إيموجيات الرش */
+.emoji {
+  position: absolute;
+  font-size: 30px;
+  opacity: 0;
+  animation: fly 3s forwards;
+}
+@keyframes fly {
+  0% { transform: scale(0.5); opacity: 1; }
+  100% { transform: translateY(-150px) scale(1.5); opacity: 0; }
+}
 </style>
 </head>
 <body>
 
-<!-- 9 صور مع نصوص -->
+<!-- 7 صور مع نصوص -->
 <div class="section">
   <img src="images/ph1.jpg" alt="صورة">
-  <div class="text">هذا النص يرافق الصورة الأولى.</div>
+  <div class="text">النص الأول مع الصورة.</div>
 </div>
 <div class="section">
-  <div class="text">هذا النص يرافق الصورة الثانية.</div>
-  <img src="images/ph1.jpg" alt="صورة">
+  <div class="text">النص الثاني مع الصورة.</div>
+  <img src="images/ph2.jpg" alt="صورة">
 </div>
 <div class="section">
-  <img src="images/ph1.jpg" alt="صورة">
-  <div class="text">هذا النص يرافق الصورة الثالثة.</div>
+  <img src="images/ph3.jpg" alt="صورة">
+  <div class="text">النص الثالث مع الصورة.</div>
 </div>
 <div class="section">
-  <div class="text">هذا النص يرافق الصورة الرابعة.</div>
-  <img src="images/ph1.jpg" alt="صورة">
+  <div class="text">النص الرابع مع الصورة.</div>
+  <img src="images/ph4.jpg" alt="صورة">
 </div>
 <div class="section">
-  <img src="images/ph1/ph1b5.jpg" alt="صورة">
-  <div class="text">هذا النص يرافق الصورة الخامسة.</div>
+  <img src="images/ph5.jpg" alt="صورة">
+  <div class="text">النص الخامس مع الصورة.</div>
 </div>
 <div class="section">
-  <div class="text">هذا النص يرافق الصورة السادسة.</div>
-  <img src="images/ph1/ph1g.jpg" alt="صورة">
+  <div class="text">النص السادس مع الصورة.</div>
+  <img src="images/ph6.jpg" alt="صورة">
 </div>
 <div class="section">
-  <img src="images/ph1/ph1g2.jpg" alt="صورة">
-  <div class="text">هذا النص يرافق الصورة السابعة.</div>
-</div>
-<div class="section">
-  <div class="text">هذا النص يرافق الصورة الثامنة.</div>
-  <img src="images/ph1/ph1g3.jpg" alt="صورة">
-</div>
-<div class="section">
-  <img src="images/ph1/ph1g4.jpg" alt="صورة">
-  <div class="text">هذا النص يرافق الصورة التاسعة.</div>
+  <img src="images/ph7.jpg" alt="صورة">
+  <div class="text">النص السابع مع الصورة.</div>
 </div>
 
-<!-- الكبستين + الرد أسفل الصفحة -->
-<div class="fixed-buttons">
+<!-- البوكس -->
+<div class="main-box">هذا هو البوكس الرئيسي للنص أو التعليمات</div>
+
+<!-- الكبستين -->
+<div class="choice-buttons">
   <button id="btn1">اختيار 1</button>
   <button id="btn2">اختيار 2</button>
-  <div id="response"></div>
 </div>
 
-<!-- زر الأغنية وزر رش الإيموجيات -->
-<div id="musicBtn">🎵</div>
-<div id="emojiBtn">💖</div>
+<!-- السهم -->
+<div class="arrow" id="arrow">⬇️</div>
 
-<!-- ملف الأغنية -->
+<!-- صندوق الرد -->
+<div class="response-box" id="response"></div>
+
+<!-- زر الأغنية وزر الإيموجيات -->
+<div class="buttons">
+  <button id="musicBtn">🎵 تشغيل/إيقاف</button>
+  <button id="emojiBtn">💖 رش إيموجيات</button>
+</div>
+
 <audio id="song" src="Somewhere Only We Know.mp3"></audio>
 
 <script>
-  // الخلفية العشوائية (قلوب + ورود)
-  const bgEmojis = ["🩵","💙","🩷","💛","💖","💕","🤍","🖤","🌷","🌹","🪷","🌸","💗","💓","💞","🧡","💚","💜"];
-  for (let i = 0; i < 40; i++) {
-    const el = document.createElement('div');
-    el.className = "background-item";
-    el.textContent = bgEmojis[Math.floor(Math.random() * bgEmojis.length)];
-    el.style.left = Math.random() * 100 + "vw";
-    el.style.top = Math.random() * 100 + "vh";
-    el.style.fontSize = 15 + Math.random()*25 + "px";
-    el.style.animationDuration = (6 + Math.random()*6) + "s";
-    document.body.appendChild(el);
+// الخلفية العشوائية (قلوب + ورود)
+const bgEmojis = ["🩵","💙","🩷","💛","💖","💕","🤍","🖤","🌷","🌹","🪷","🌸","💗","💓","💞","🧡","💚","💜"];
+for (let i = 0; i < 40; i++) {
+  const el = document.createElement('div');
+  el.className = "background-item";
+  el.textContent = bgEmojis[Math.floor(Math.random() * bgEmojis.length)];
+  el.style.left = Math.random() * 100 + "vw";
+  el.style.top = Math.random() * 100 + "vh";
+  el.style.fontSize = 15 + Math.random()*25 + "px";
+  el.style.animationDuration = (6 + Math.random()*6) + "s";
+  document.body.appendChild(el);
+}
+
+// زر الأغنية
+const musicBtn = document.getElementById("musicBtn");
+const song = document.getElementById("song");
+musicBtn.addEventListener("click", () => {
+  if(song.paused){
+    song.play();
+    musicBtn.classList.add("playing");
+  } else {
+    song.pause();
+    musicBtn.classList.remove("playing");
   }
+});
 
-  // زر الأغنية
-  const musicBtn = document.getElementById("musicBtn");
-  const song = document.getElementById("song");
-  musicBtn.addEventListener("click", () => {
-    if(song.paused){
-      song.play();
-      musicBtn.classList.add("playing");
-    } else {
-      song.pause();
-      musicBtn.classList.remove("playing");
-    }
-  });
+// زر رش الإيموجيات
+const emojiBtn = document.getElementById("emojiBtn");
+const emojis = ["🩵","💙","🩷","💛","💖","💕","🤍","🖤","🌷","🌹","🪷","🌸","💗","💓","💞","🧡","💚","💙","💜"];
+emojiBtn.addEventListener("click", () => {
+  for(let i=0; i<50; i++){
+    const emoji = document.createElement("div");
+    emoji.className = "emoji";
+    emoji.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    emoji.style.left = Math.random() * window.innerWidth + "px";
+    emoji.style.top = Math.random() * window.innerHeight + "px";
+    document.body.appendChild(emoji);
+    setTimeout(() => emoji.remove(), 3000);
+  }
+});
 
-  // زر الإيموجيات
-  const emojiBtn = document.getElementById("emojiBtn");
-  const emojis = ["🩵","💙","🩷","💛","💖","💕","🤍","🖤","🌷","🌹","🪷","🌸","💗","💓","💞","🧡","💚","💙","💜"];
-  emojiBtn.addEventListener("click", () => {
-    for(let i=0; i<50; i++){
-      const emoji = document.createElement("div");
-      emoji.className = "emoji";
-      emoji.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-      emoji.style.left = Math.random() * window.innerWidth + "px";
-      emoji.style.top = Math.random() * window.innerHeight + "px";
-      document.body.appendChild(emoji);
-      setTimeout(() => emoji.remove(), 3000);
-    }
-  });
+// الكبستين والرد
+const btn1 = document.getElementById("btn1");
+const btn2 = document.getElementById("btn2");
+const responseBox = document.getElementById("response");
+const arrow = document.getElementById("arrow");
 
-  // الكبستين + الرد
-  const btn1 = document.getElementById("btn1");
-  const btn2 = document.getElementById("btn2");
-  const response = document.getElementById("response");
-
-  btn1.addEventListener("click", () => {
-    response.textContent = "لقد اخترت الاختيار 1";
-    response.style.display = "block";
-    btn2.style.display = "none";
-  });
-
-  btn2.addEventListener("click", () => {
-    response.textContent = "لقد اخترت الاختيار 2";
-    response.style.display = "block";
-    btn1.style.display = "none";
-  });
+btn1.addEventListener("click", () => {
+  responseBox.textContent = "لقد اخترت الاختيار 1";
+  responseBox.style.display = "block";
+  btn2.style.display = "none";
+  arrow.style.display = "block";
+});
+btn2.addEventListener("click", () => {
+  responseBox.textContent = "لقد اخترت الاختيار 2";
+  responseBox.style.display = "block";
+  btn1.style.display = "none";
+  arrow.style.display = "block";
+});
 </script>
 </body>
 </html>
